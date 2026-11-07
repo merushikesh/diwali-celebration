@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Diwali Celebration</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      background: radial-gradient(circle at center, #1b0a2a 0%, #08020f 100%);
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      touch-action: none;
+      height: 100vh;
+      width: 100vw;
+    }
+    canvas { display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+    
+    .hud {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .badge {
+      background: linear-gradient(135deg, #ff9933, #d32f2f);
+      border: 1px solid #ffd700;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255,153,51,0.4);
+      color: #fff;
+    }
+    .btn {
+      pointer-events: auto;
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+    }
+    .tap-hint {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255, 215, 0, 0.8);
+      z-index: 10;
+      pointer-events: none;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    /* Modal / Card */
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .card {
+      background: linear-gradient(180deg, #250938 0%, #150220 100%);
+      border: 2px solid #ffd700;
+      border-radius: 18px;
+      padding: 22px 18px;
+      width: 100%;
