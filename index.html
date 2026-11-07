@@ -33,7 +33,7 @@
       touch-action: none;
     }
 
-    /* Top HUD */
+    /* Top Navigation HUD */
     .top-bar {
       position: absolute;
       top: 10px;
@@ -74,7 +74,7 @@
     }
     .hud-btn:active { transform: scale(0.95); }
 
-    /* Bottom Control Tray with Embedded Art Stage */
+    /* Bottom Control Tray */
     .bottom-deck {
       position: absolute;
       bottom: 0;
@@ -90,7 +90,7 @@
       pointer-events: auto;
     }
 
-    /* Vibrant Festive Character Illustration Frame */
+    /* Uploaded Kids Artwork Frame */
     .art-stage {
       display: flex;
       align-items: center;
@@ -99,8 +99,8 @@
       margin-bottom: 2px;
     }
     .art-frame {
-      width: 135px;
-      height: 90px;
+      width: 145px;
+      height: 98px;
       border-radius: 16px;
       border: 2px solid #ffd700;
       box-shadow: 0 0 22px rgba(255, 153, 51, 0.5), inset 0 0 10px rgba(0,0,0,0.6);
@@ -110,12 +110,14 @@
       align-items: center;
       justify-content: center;
     }
-    .art-frame svg {
+    .art-frame img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    /* Instruction Guide */
+    /* Dynamic User Instruction Banner */
     .action-guide-box {
       background: rgba(255, 215, 0, 0.16);
       border: 1px solid #ffd700;
@@ -174,7 +176,7 @@
     }
     .cracker-card.active .label { color: #fff; }
 
-    /* Diyas Row */
+    /* Bottom Diyas Row */
     .diya-row {
       display: flex;
       gap: 12px;
@@ -208,7 +210,7 @@
     .diya-btn.lit .diya-flame { display: block; animation: flicker 0.2s infinite alternate; }
     @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
 
-    /* Modals */
+    /* Modals & Overlays */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -221,6 +223,7 @@
       backdrop-filter: blur(8px);
     }
 
+    /* Step 1: Language Picker */
     .lang-card {
       background: linear-gradient(180deg, #420d6b 0%, #1e0333 100%);
       border: 3px solid #ffd700;
@@ -262,6 +265,7 @@
     .lang-btn span.script { font-size: 17px; font-weight: bold; }
     .lang-btn span.sub { font-size: 11px; opacity: 0.85; }
 
+    /* Step 2: Message Card */
     .message-card {
       background: linear-gradient(180deg, #3d0a63 0%, #19022c 100%);
       border: 2px solid #ffd700;
@@ -351,12 +355,13 @@
 </head>
 <body>
 
-  <!-- Festive Celebration Music (High Reliability Direct CDN Stream) -->
+  <!-- Background Audio Element: Configured for repository song -->
   <audio id="bgSong" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_99341416e7.mp3?filename=indian-traditional-festive-melody-122934.mp3" type="audio/mpeg">
+    <source src="song.mp3" type="audio/mpeg">
+    <source src="song.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Top Bar -->
+  <!-- Top Navigation Bar -->
   <div class="top-bar">
     <div class="badge-name">🪔 Rushikesha & Family</div>
     <div class="hud-controls">
@@ -371,63 +376,10 @@
   <!-- Bottom Stage -->
   <div class="bottom-deck">
     
-    <!-- Rich Vibrant Festive Kids Artwork Built Directly Into Code -->
+    <!-- Uploaded Kids Art Stage -->
     <div class="art-stage">
       <div class="art-frame">
-        <svg viewBox="0 0 160 100">
-          <defs>
-            <radialGradient id="skyGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#4a0e6b"/>
-              <stop offset="100%" stop-color="#140224"/>
-            </radialGradient>
-          </defs>
-          <rect width="160" height="100" fill="url(#skyGrad)"/>
-          
-          <!-- Background Diyas Glow -->
-          <circle cx="20" cy="85" r="5" fill="#ff9900" opacity="0.6"/>
-          <circle cx="140" cy="85" r="5" fill="#ff9900" opacity="0.6"/>
-          
-          <!-- Boy in Royal Saffron Kurta and Dhoti -->
-          <g transform="translate(18, 5)">
-            <!-- Sparkler -->
-            <line x1="45" y1="42" x2="60" y2="24" stroke="#e0e0e0" stroke-width="1.8"/>
-            <circle cx="60" cy="24" r="3" fill="#ffffff"/>
-            <circle cx="60" cy="24" r="7" fill="none" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="2,2"/>
-            <!-- Boy Head & Tilak -->
-            <circle cx="32" cy="28" r="13" fill="#f8cca4"/>
-            <path d="M 21 24 Q 32 14 43 24 Q 32 18 21 24 Z" fill="#2d1607"/>
-            <line x1="32" y1="21" x2="32" y2="26" stroke="#d32f2f" stroke-width="1.8"/>
-            <circle cx="28" cy="27" r="1.5" fill="#2d1607"/>
-            <circle cx="36" cy="27" r="1.5" fill="#2d1607"/>
-            <path d="M 29 31 Q 32 35 35 31" stroke="#d32f2f" stroke-width="1.2" fill="none"/>
-            <!-- Kurta -->
-            <path d="M 21 41 L 43 41 L 47 70 L 17 70 Z" fill="#ff7700"/>
-            <line x1="32" y1="41" x2="32" y2="70" stroke="#ffd700" stroke-width="1.8"/>
-            <!-- Dhoti -->
-            <path d="M 19 70 L 45 70 L 42 92 L 34 92 L 32 78 L 30 92 L 22 92 Z" fill="#fff9e6" stroke="#ffd700"/>
-          </g>
-
-          <!-- Girl in Festive Pink Choli & Turquoise Lehenga -->
-          <g transform="translate(74, 5)">
-            <!-- Sparkler -->
-            <line x1="22" y1="42" x2="8" y2="24" stroke="#e0e0e0" stroke-width="1.8"/>
-            <circle cx="8" cy="24" r="3" fill="#ffffff"/>
-            <circle cx="8" cy="24" r="7" fill="none" stroke="#00e5ff" stroke-width="1.5" stroke-dasharray="2,2"/>
-            <!-- Girl Head, Gajra & Bindi -->
-            <circle cx="34" cy="28" r="13" fill="#f8cca4"/>
-            <circle cx="34" cy="18" r="6" fill="#2d1607"/>
-            <circle cx="34" cy="17" r="7" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="2,2"/>
-            <circle cx="34" cy="24" r="1.2" fill="#d32f2f"/>
-            <circle cx="30" cy="27" r="1.5" fill="#2d1607"/>
-            <circle cx="38" cy="27" r="1.5" fill="#2d1607"/>
-            <path d="M 31 31 Q 34 35 37 31" stroke="#d32f2f" stroke-width="1.2" fill="none"/>
-            <!-- Choli -->
-            <path d="M 24 41 L 44 41 L 42 55 L 26 55 Z" fill="#e91e63"/>
-            <!-- Lehenga -->
-            <path d="M 26 56 L 42 56 L 52 92 L 16 92 Z" fill="#00bcd4"/>
-            <path d="M 18 86 Q 34 81 50 86" stroke="#ffd700" stroke-width="2" fill="none"/>
-          </g>
-        </svg>
+        <img src="kids.png" alt="Happy Diwali" onerror="this.onerror=null; this.src='kids.png.png';">
       </div>
     </div>
 
@@ -546,27 +498,25 @@
       }
     }
 
-    // 1. Heavy Black Powder Gunpowder Thump (Lowpass Shockwave + Explosive Noise)
+    // Heavy Gunpowder Shockwave Thump
     function playHeavyExplosion(volume = 1.0) {
       if (!isSoundOn) return;
       initAudio();
       try {
         const t = audioCtx.currentTime;
 
-        // Sub-bass thump oscillator (The physical chest thump)
         const subOsc = audioCtx.createOscillator();
         const subGain = audioCtx.createGain();
         subOsc.type = 'sine';
         subOsc.frequency.setValueAtTime(140, t);
         subOsc.frequency.exponentialRampToValueAtTime(32, t + 0.35);
-        subGain.gain.setValueAtTime(0.7 * volume, t);
+        subGain.gain.setValueAtTime(0.75 * volume, t);
         subGain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
         subOsc.connect(subGain);
         subGain.connect(audioCtx.destination);
         subOsc.start(t);
         subOsc.stop(t + 0.35);
 
-        // Explosive burst noise (The rip & crackle)
         const bufferSize = audioCtx.sampleRate * 0.4;
         const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
         const data = buffer.getChannelData(0);
@@ -589,26 +539,24 @@
       } catch (e) {}
     }
 
-    // 2. High-Pressure Sharp Crack (For Ladi Rapid Sequence)
+    // High-Pressure Sharp Crack (For 1000 Ladi Sequence)
     function playLadiPop(pitchMod = 1.0) {
       if (!isSoundOn) return;
       initAudio();
       try {
         const t = audioCtx.currentTime;
-        // High frequency sharp pop
         const osc = audioCtx.createOscillator();
         const oscGain = audioCtx.createGain();
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(320 * pitchMod, t);
         osc.frequency.exponentialRampToValueAtTime(50, t + 0.12);
-        oscGain.gain.setValueAtTime(0.65, t);
+        oscGain.gain.setValueAtTime(0.7, t);
         oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
         osc.connect(oscGain);
         oscGain.connect(audioCtx.destination);
         osc.start(t);
         osc.stop(t + 0.12);
 
-        // Crack noise
         const bufferSize = audioCtx.sampleRate * 0.15;
         const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
         const data = buffer.getChannelData(0);
@@ -621,7 +569,7 @@
         filter.type = 'bandpass';
         filter.frequency.setValueAtTime(1200 * pitchMod, t);
         const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.7, t);
+        gain.gain.setValueAtTime(0.75, t);
         gain.gain.exponentialRampToValueAtTime(0.01, t + 0.15);
         noise.connect(filter);
         filter.connect(gain);
@@ -630,7 +578,7 @@
       } catch (e) {}
     }
 
-    // 3. Real Whistle for Sky Rockets
+    // Rocket Ascent Whistle
     function playWhistle() {
       if (!isSoundOn) return;
       initAudio();
@@ -650,7 +598,7 @@
       } catch (e) {}
     }
 
-    // 4. Sparkler Crackle
+    // Sparkler Crackle
     function playSparklerCrackle() {
       if (!isSoundOn) return;
       initAudio();
@@ -675,12 +623,12 @@
       } catch (e) {}
     }
 
-    // Background Song Controls
+    // Song Player Controls
     const song = document.getElementById('bgSong');
     let isSongPlaying = false;
 
     function playSong() {
-      song.volume = 0.55;
+      song.volume = 0.6;
       song.play().then(() => {
         isSongPlaying = true;
         document.getElementById('musicToggleBtn').innerText = '🎵 Song: ON';
@@ -697,6 +645,7 @@
       }
     }
 
+    // Multilingual Messages & Instructions
     const languageData = {
       marathi: {
         message: `अंधारावर प्रकाशाचा विजय साजरा करण्याचा हा दीपोत्सव! 🪔\n\nज्याप्रमाणे छत्रपती शिवाजी महाराजांनी स्वराज्याची ज्योत पेटवली, त्याचप्रमाणे तुमच्या मनात धैर्य, जिद्द आणि प्रेरणेचा दिवा सदैव तेवत राहो.\n\nया दिवाळीत तुमच्या आयुष्यात सुख, समृद्धी आणि यशाचा प्रकाश उजळो!\n\nदिवाळीच्या हार्दिक शुभेच्छा! जय भवानी, जय शिवराय! 🚩`,
@@ -881,7 +830,7 @@
       }
     }
 
-    // Realistic 1000-Wala Ladi Sequence (Dual Layer: Pops + Heavy Bass Rolling Roar)
+    // Realistic 1000-Wala Ladi Detonation
     function spawnLadi(startX, startY) {
       const bursts = 24;
       for (let i = 0; i < bursts; i++) {
@@ -890,13 +839,11 @@
           const offsetX = startX + (Math.random() * 90 - 45);
           const offsetY = startY + (Math.random() * 50 - 25);
           
-          // Audio: Staggered rapid pops with heavy cannon thump every 4th blast
           playLadiPop(0.85 + Math.random() * 0.4);
           if (i % 4 === 0 || i === bursts - 1) {
             playHeavyExplosion(0.85);
           }
 
-          // Visual: Red paper shrapnel + bright flash sparks
           for (let p = 0; p < 24; p++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = Math.random() * 5 + 1.5;
