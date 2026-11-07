@@ -16,14 +16,13 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: radial-gradient(circle at 50% 30%, #380a59 0%, #120224 60%, #06000c 100%);
+      background: radial-gradient(circle at 50% 30%, #360759 0%, #150228 55%, #05000a 100%);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: #fff;
       position: relative;
     }
 
-    /* Fireworks Canvas */
-    #fireworksCanvas {
+    #gameCanvas {
       position: absolute;
       top: 0;
       left: 0;
@@ -31,139 +30,163 @@
       height: 100%;
       z-index: 1;
       display: block;
+      touch-action: none;
     }
 
-    /* Top Bar HUD */
+    /* Top HUD */
     .top-bar {
       position: absolute;
-      top: 14px;
+      top: 10px;
       left: 0;
       right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 16px;
-      z-index: 20;
-      gap: 8px;
+      padding: 0 14px;
+      z-index: 25;
+      gap: 6px;
     }
     .badge-name {
       background: linear-gradient(135deg, #ff7b00, #d32f2f);
       border: 2px solid #ffd700;
-      padding: 8px 16px;
-      border-radius: 25px;
+      padding: 7px 14px;
+      border-radius: 20px;
       font-size: 13px;
       font-weight: 800;
       color: #fff;
       box-shadow: 0 4px 18px rgba(255, 123, 0, 0.6);
-      letter-spacing: 0.5px;
+      white-space: nowrap;
     }
     .hud-controls {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
     .hud-btn {
       background: linear-gradient(135deg, #ffd700, #ffb300);
       color: #210238;
       border: none;
-      padding: 8px 14px;
-      border-radius: 20px;
+      padding: 7px 12px;
+      border-radius: 18px;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.45);
     }
     .hud-btn:active { transform: scale(0.95); }
 
-    /* Bottom Festive Ground */
-    .bottom-ground {
+    /* Interactive Cracker Tray & Control Deck */
+    .bottom-deck {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 250px;
-      background: linear-gradient(to top, rgba(10, 1, 20, 0.98) 65%, transparent);
-      z-index: 10;
+      background: linear-gradient(to top, rgba(9, 1, 18, 0.98) 75%, transparent);
+      z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 16px;
-      pointer-events: none;
-    }
-
-    .instruction-text {
-      font-size: 13px;
-      color: #ffd700;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-      animation: pulse 1.6s infinite;
-      text-align: center;
-      padding: 0 10px;
-      font-weight: 600;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-
-    /* Kids with Traditional Clothing & Sparklers */
-    .kids-stage {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 480px;
-      padding: 0 20px;
-      margin-bottom: 6px;
-      align-items: flex-end;
-    }
-    .kid-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: gentleBob 2s infinite ease-in-out alternate;
-    }
-    .kid-container.girl { animation-delay: 0.6s; }
-    @keyframes gentleBob {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-6px); }
-    }
-    .sparkler-spark {
-      animation: spark 0.12s infinite alternate;
-      transform-origin: center;
-    }
-    @keyframes spark {
-      0% { opacity: 0.3; transform: scale(0.7); }
-      100% { opacity: 1; transform: scale(1.3); }
-    }
-
-    /* Diyas */
-    .diya-row {
-      display: flex;
-      gap: 14px;
+      padding: 10px 10px 14px;
+      gap: 8px;
       pointer-events: auto;
     }
-    .diya-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
+
+    /* Dynamic User Instruction Banner */
+    .action-guide-box {
+      background: rgba(255, 215, 0, 0.16);
+      border: 1px solid #ffd700;
+      border-radius: 18px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: #ffd700;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      animation: pulseGuide 1.8s infinite alternate;
+      max-width: 95%;
+    }
+    @keyframes pulseGuide {
+      0% { opacity: 0.8; transform: translateY(0); }
+      100% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    /* Firecrackers Selector Bar */
+    .cracker-selector {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding: 4px;
+      scrollbar-width: none;
+    }
+    .cracker-selector::-webkit-scrollbar { display: none; }
+
+    .cracker-card {
+      background: linear-gradient(180deg, #3d0a63 0%, #1c0230 100%);
       border: 2px solid #ff9933;
+      border-radius: 14px;
+      padding: 8px 10px;
+      min-width: 66px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 3px;
       cursor: pointer;
-      font-size: 22px;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+    .cracker-card .icon {
+      font-size: 26px;
+      filter: drop-shadow(0 2px 5px rgba(255, 153, 51, 0.5));
+    }
+    .cracker-card .label {
+      font-size: 10px;
+      font-weight: 800;
+      color: #ffeedd;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+    .cracker-card.active {
+      border-color: #ffd700;
+      background: linear-gradient(180deg, #ff7b00 0%, #990022 100%);
+      box-shadow: 0 0 16px #ff9900, 0 0 25px #ffd700;
+      transform: translateY(-5px) scale(1.06);
+    }
+    .cracker-card.active .label {
+      color: #fff;
+    }
+
+    /* Bottom Diyas Row */
+    .diya-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .diya-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px solid #ff9933;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
       position: relative;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .diya-btn.lit {
       border-color: #ffd700;
       background: radial-gradient(circle, #fff7e6 0%, #ff8c00 70%);
-      box-shadow: 0 0 20px #ff7b00, 0 0 35px #ffd700;
-      transform: scale(1.1);
+      box-shadow: 0 0 18px #ff7b00, 0 0 30px #ffd700;
+      transform: scale(1.08);
     }
     .diya-flame {
       position: absolute;
       top: -12px;
-      font-size: 16px;
+      font-size: 14px;
       display: none;
     }
     .diya-btn.lit .diya-flame { display: block; animation: flicker 0.2s infinite alternate; }
@@ -182,41 +205,31 @@
       backdrop-filter: blur(8px);
     }
 
-    /* Step 1: Language Picker Card */
+    /* Step 1: Language Picker */
     .lang-card {
       background: linear-gradient(180deg, #420d6b 0%, #1e0333 100%);
       border: 3px solid #ffd700;
       border-radius: 24px;
-      padding: 26px 20px;
+      padding: 24px 18px;
       width: 100%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 12px 45px rgba(255, 153, 51, 0.35);
+      box-shadow: 0 12px 45px rgba(255, 153, 51, 0.4);
       animation: popIn 0.3s ease-out;
     }
-    .lang-card h2 {
-      font-size: 24px;
-      color: #ffd700;
-      margin-bottom: 6px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .lang-subtitle {
-      font-size: 14px;
-      color: #ffb74d;
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
+    .lang-card h2 { font-size: 24px; color: #ffd700; margin-bottom: 6px; }
+    .lang-subtitle { font-size: 14px; color: #ffb74d; margin-bottom: 18px; line-height: 1.4; }
     .lang-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .lang-btn {
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 102, 0, 0.2));
       border: 2px solid #ffd700;
       color: #fff;
-      padding: 14px 10px;
+      padding: 12px 8px;
       border-radius: 14px;
       font-size: 15px;
       font-weight: 700;
@@ -231,23 +244,16 @@
       background: linear-gradient(135deg, #ffd700, #ff7b00);
       color: #210238;
       transform: scale(1.03);
-      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
     }
-    .lang-btn span.script {
-      font-size: 17px;
-      font-weight: bold;
-    }
-    .lang-btn span.sub {
-      font-size: 11px;
-      opacity: 0.85;
-    }
+    .lang-btn span.script { font-size: 17px; font-weight: bold; }
+    .lang-btn span.sub { font-size: 11px; opacity: 0.85; }
 
-    /* Step 2: Full Greeting Message Card */
+    /* Step 2: Message Card */
     .message-card {
       background: linear-gradient(180deg, #3d0a63 0%, #19022c 100%);
       border: 2px solid #ffd700;
       border-radius: 22px;
-      padding: 24px 18px;
+      padding: 22px 18px;
       width: 100%;
       max-width: 440px;
       max-height: 90vh;
@@ -263,27 +269,18 @@
     .message-card h2 { color: #ffd700; font-size: 22px; margin-bottom: 4px; }
     .message-card .sub-header { color: #ff9933; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
 
-    .lang-change-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.08);
+    .step-guide-box {
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px dashed #ffd700;
       border-radius: 10px;
-      padding: 6px 12px;
+      padding: 10px;
       margin-bottom: 14px;
-      font-size: 13px;
-      color: #ffcc80;
-    }
-    .btn-switch-lang {
-      background: #ffd700;
-      color: #210238;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-weight: bold;
       font-size: 12px;
-      cursor: pointer;
+      color: #ffeedd;
+      text-align: left;
+      line-height: 1.5;
     }
+    .step-guide-box strong { color: #ffd700; }
 
     .msg-display {
       background: rgba(255, 255, 255, 0.07);
@@ -301,7 +298,7 @@
       color: #ffd700;
       font-weight: 800;
       font-size: 15px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .actions-grid {
@@ -335,7 +332,7 @@
       background: linear-gradient(135deg, #ffd700, #ff9933);
       border: none;
       color: #210238;
-      padding: 11px;
+      padding: 12px;
       border-radius: 10px;
       font-weight: 800;
       font-size: 14px;
@@ -346,76 +343,51 @@
 </head>
 <body>
 
-  <!-- Festive Traditional Shehnai/Sitar Celebration Music -->
-  <audio id="bgMusic" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_99341416e7.mp3?filename=indian-traditional-festive-melody-122934.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Top Navigation Bar -->
+  <!-- Top Bar -->
   <div class="top-bar">
     <div class="badge-name">🪔 Rushikesha & Family</div>
     <div class="hud-controls">
-      <button id="musicBtn" class="hud-btn" onclick="toggleMusic()">🎵 Music: ON</button>
+      <button id="soundBtn" class="hud-btn" onclick="toggleAudio()">🎵 Sound: ON</button>
       <button class="hud-btn" onclick="openMessageModal()">Wishes 📜</button>
     </div>
   </div>
 
-  <!-- Interactive Fireworks Canvas -->
-  <canvas id="fireworksCanvas"></canvas>
+  <!-- Game Canvas for all Firecrackers & Fireworks -->
+  <canvas id="gameCanvas"></canvas>
 
-  <!-- Bottom Interactive Ground -->
-  <div class="bottom-ground">
+  <!-- Bottom Firecracker Deck & Guide -->
+  <div class="bottom-deck">
     
-    <!-- Animated Kids in Traditional Clothing -->
-    <div class="kids-stage">
-      <!-- Boy: Royal Saffron Kurta & White Dhoti -->
-      <div class="kid-container boy">
-        <svg width="75" height="100" viewBox="0 0 100 130">
-          <g class="sparkler-spark">
-            <circle cx="85" cy="45" r="4" fill="#ffff00" />
-            <line x1="85" y1="45" x2="95" y2="35" stroke="#ff9900" stroke-width="2" />
-            <line x1="85" y1="45" x2="75" y2="35" stroke="#ffffff" stroke-width="2" />
-            <line x1="85" y1="45" x2="85" y2="30" stroke="#ffd700" stroke-width="2" />
-            <line x1="85" y1="45" x2="95" y2="52" stroke="#ff3366" stroke-width="2" />
-          </g>
-          <line x1="68" y1="68" x2="85" y2="45" stroke="#ccc" stroke-width="2" />
-          <circle cx="45" cy="28" r="15" fill="#f5c298" />
-          <path d="M 32 23 Q 45 12 58 23 Q 45 18 32 23 Z" fill="#2c1a0e" />
-          <line x1="45" y1="22" x2="45" y2="28" stroke="#d32f2f" stroke-width="2" />
-          <path d="M 32 43 L 58 43 L 64 78 L 26 78 Z" fill="#ff7700" />
-          <line x1="45" y1="43" x2="45" y2="78" stroke="#ffd700" stroke-width="2" />
-          <path d="M 30 78 L 60 78 L 56 108 L 47 108 L 45 88 L 43 108 L 34 108 Z" fill="#fff8e7" stroke="#ffd700" stroke-width="1.5" />
-          <circle cx="28" cy="55" r="4" fill="#f5c298" />
-          <circle cx="68" cy="68" r="4" fill="#f5c298" />
-        </svg>
-      </div>
+    <!-- User Guide Indicator -->
+    <div id="instructionBanner" class="action-guide-box">
+      🚀 <strong>Sky Rocket Selected:</strong> Tap anywhere in the sky to launch!
+    </div>
 
-      <!-- Girl: Festive Pink Choli & Turquoise Lehanga -->
-      <div class="kid-container girl">
-        <svg width="75" height="100" viewBox="0 0 100 130">
-          <g class="sparkler-spark">
-            <circle cx="15" cy="45" r="4" fill="#ffff00" />
-            <line x1="15" y1="45" x2="5" y2="35" stroke="#ff9900" stroke-width="2" />
-            <line x1="15" y1="45" x2="25" y2="35" stroke="#ffffff" stroke-width="2" />
-            <line x1="15" y1="45" x2="15" y2="30" stroke="#ffd700" stroke-width="2" />
-            <line x1="15" y1="45" x2="5" y2="52" stroke="#00ffcc" stroke-width="2" />
-          </g>
-          <line x1="32" y1="68" x2="15" y2="45" stroke="#ccc" stroke-width="2" />
-          <circle cx="55" cy="28" r="15" fill="#f5c298" />
-          <circle cx="55" cy="18" r="7" fill="#2c1a0e" />
-          <circle cx="55" cy="16" r="8" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="3,3" />
-          <circle cx="55" cy="24" r="1.5" fill="#d32f2f" />
-          <path d="M 43 43 L 67 43 L 65 60 L 45 60 Z" fill="#e91e63" />
-          <path d="M 46 62 L 64 62 L 78 108 L 32 108 Z" fill="#00bcd4" />
-          <path d="M 34 102 Q 55 96 76 102" fill="none" stroke="#ffd700" stroke-width="3" />
-          <circle cx="32" cy="68" r="4" fill="#f5c298" />
-          <circle cx="72" cy="55" r="4" fill="#f5c298" />
-        </svg>
+    <!-- Firecrackers Choice Bar -->
+    <div class="cracker-selector">
+      <div class="cracker-card active" onclick="selectCracker('rocket', this)">
+        <span class="icon">🚀</span>
+        <span class="label">Rocket</span>
+      </div>
+      <div class="cracker-card" onclick="selectCracker('anar', this)">
+        <span class="icon">🌋</span>
+        <span class="label">Anar</span>
+      </div>
+      <div class="cracker-card" onclick="selectCracker('chakkri', this)">
+        <span class="icon">🌀</span>
+        <span class="label">Chakkri</span>
+      </div>
+      <div class="cracker-card" onclick="selectCracker('phuljhadi', this)">
+        <span class="icon">✨</span>
+        <span class="label">Phuljhadi</span>
+      </div>
+      <div class="cracker-card" onclick="selectCracker('ladi', this)">
+        <span class="icon">💥</span>
+        <span class="label">1000 Ladi</span>
       </div>
     </div>
 
-    <div class="instruction-text">✨ Tap the Diyas to light them, or tap the sky for Fireworks! ✨</div>
-    
+    <!-- Sacred Diyas Row -->
     <div class="diya-row">
       <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
       <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
@@ -425,7 +397,7 @@
     </div>
   </div>
 
-  <!-- STEP 1: INITIAL LANGUAGE SELECTION MODAL (Appears First) -->
+  <!-- STEP 1: INITIAL LANGUAGE SELECTION MODAL -->
   <div id="languageGatewayModal" class="modal-overlay">
     <div class="lang-card">
       <h2>🪔 शुभ दीपावली 🪔</h2>
@@ -465,9 +437,11 @@
       <h2>Happy Diwali! 🪔</h2>
       <div class="sub-header">Chhatrapati Shivaji Maharaj Inspired Wishes</div>
 
-      <div class="lang-change-row">
-        <span>Language: <strong id="currentLangLabel">मराठी</strong></span>
-        <button class="btn-switch-lang" onclick="reopenLanguagePicker()">Change 🔁</button>
+      <div class="step-guide-box">
+        <strong>📋 Interactive Celebration Guide:</strong><br>
+        1. Select your favorite cracker below (Rocket, Anar, Chakkri, Ladi, Phuljhadi).<br>
+        2. Tap anywhere on the screen to ignite your crackers!<br>
+        3. Light all 5 sacred Diyas on the ground to illuminate your home!
       </div>
 
       <div id="messageText" class="msg-display"></div>
@@ -478,72 +452,132 @@
         <button class="btn-wa" onclick="shareWhatsApp()">Share WhatsApp 📲</button>
         <button class="btn-native" onclick="shareNative()">Share Link 🔗</button>
       </div>
-      <button class="btn-play" onclick="closeMessageModal()">✨ Light Diyas & Play Fireworks ✨</button>
+      <button class="btn-play" onclick="closeMessageModal()">✨ Start Bursting Firecrackers ✨</button>
     </div>
   </div>
 
   <script>
-    const messages = {
-      marathi: {
-        label: "मराठी (Marathi)",
-        text: `अंधारावर प्रकाशाचा विजय साजरा करण्याचा हा दीपोत्सव! 🪔\n\nज्याप्रमाणे छत्रपती शिवाजी महाराजांनी स्वराज्याची ज्योत पेटवली, त्याचप्रमाणे तुमच्या मनात धैर्य, जिद्द आणि प्रेरणेचा दिवा सदैव तेवत राहो.\n\nया दिवाळीत तुमच्या आयुष्यात सुख, समृद्धी आणि यशाचा प्रकाश उजळो!\n\nदिवाळीच्या हार्दिक शुभेच्छा! जय भवानी, जय शिवराय! 🚩`
-      },
-      english: {
-        label: "English",
-        text: `Happy Diwali! 🪔\n\nJust as Chhatrapati Shivaji Maharaj lit the flame of Swarajya in the darkest of times, may this Diwali ignite courage, vision, and purpose in your heart.\n\nHe showed us that greatness comes from discipline, justice, and the will to build something larger than oneself. May your home glow with happiness and your spirit stay unbreakable!\n\nShubh Deepavali! Jai Bhavani, Jai Shivaji! 🚩`
-      },
-      tamil: {
-        label: "தமிழ் (Tamil)",
-        text: `இருளை வென்று ஒளி பிறக்கும் தீபத் திருநாள்! 🪔\n\nசத்ரபதி சிவாஜி மகாராஜ் சுயராஜ்ஜியத்தின் தீபத்தை ஏற்றியது போல, உங்கள் மனதில் துணிவு, உறுதி, உத்வேகம் என்னும் தீபம் எப்போதும் ஒளிரட்டும்.\n\nஇந்தத் தீபாவளி உங்கள் வாழ்வில் மகிழ்ச்சி, செழிப்பு, வெற்றியின் ஒளியைப் பரப்பட்டும்!\n\nதீபாவளி நல்வாழ்த்துக்கள்! ஜெய் பவானி, ஜெய் சிவாஜி! 🚩`
-      },
-      telugu: {
-        label: "తెలుగు (Telugu)",
-        text: `చీకటిపై వెలుగు సాధించిన విజయాన్ని జరుపుకునే దీపావళి! 🪔\n\nఛత్రపతి శివాజీ మహారాజ్ స్వరాజ్య జ్యోతిని వెలిగించినట్లే, మీ హృదయంలో ధైర్యం, పట్టుదల, స్ఫూర్తి అనే దీపం ఎల్లప్పుడూ వెలుగుతూ ఉండాలి.\n\nఈ దీపావళి మీ జీవితంలో సుఖం, సంపద, విజయపు కాంతిని నింపాలి!\n\nదీపావళి శుభాకాంక్షలు! జై భవానీ, జై శివాజీ! 🚩`
-      },
-      punjabi: {
-        label: "ਪੰਜਾਬੀ (Punjabi)",
-        text: `ਹਨੇਰੇ ਉੱਤੇ ਰੌਸ਼ਨੀ ਦੀ ਜਿੱਤ ਦਾ ਤਿਉਹਾਰ, ਦੀਵਾਲੀ! 🪔\n\nਜਿਵੇਂ ਛਤਰਪਤੀ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਸਵਰਾਜ ਦੀ ਜੋਤ ਜਗਾਈ, ਉਸੇ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਮਨ ਵਿੱਚ ਹਿੰਮਤ, ਦ੍ਰਿੜ੍ਹਤਾ ਅਤੇ ਪ੍ਰੇਰਣਾ ਦਾ ਦੀਵਾ ਸਦਾ ਜਗਦਾ ਰਹੇ।\n\nਇਸ ਦੀਵਾਲੀ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਖੁਸ਼ੀਆਂ, ਖੁਸ਼ਹਾਲੀ ਅਤੇ ਸਫਲਤਾ ਦਾ ਪ੍ਰਕਾਸ਼ ਹੋਵੇ!\n\nਦੀਵਾਲੀ ਦੀਆਂ ਲੱਖ-ਲੱਖ ਵਧਾਈਆਂ! ਜੈ ਭਵਾਨੀ, ਜੈ ਸ਼ਿਵਾਜੀ! 🚩`
+    // Audio Synthesizer Engine
+    let audioCtx = null;
+    let isSoundOn = true;
+    let backgroundMusicInterval = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    const festiveFrequencies = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+    function playChime(freq = 392.00, duration = 0.8) {
+      if (!isSoundOn || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playCrackle(pitch = 180, duration = 0.2) {
+      if (!isSoundOn || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(pitch + Math.random() * 80, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playWhistle() {
+      if (!isSoundOn || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1600, audioCtx.currentTime + 0.5);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+      } catch (e) {}
+    }
+
+    function playFountainRush() {
+      if (!isSoundOn || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(280 + Math.random() * 200, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+      } catch (e) {}
+    }
+
+    function startMusicLoop() {
+      let step = 0;
+      if (backgroundMusicInterval) clearInterval(backgroundMusicInterval);
+      backgroundMusicInterval = setInterval(() => {
+        if (isSoundOn && audioCtx) {
+          playChime(festiveFrequencies[step % festiveFrequencies.length], 0.7);
+          step++;
+        }
+      }, 750);
+    }
+
+    function toggleAudio() {
+      isSoundOn = !isSoundOn;
+      const btn = document.getElementById('soundBtn');
+      btn.innerText = isSoundOn ? '🎵 Sound: ON' : '🔇 Sound: OFF';
+      if (isSoundOn) {
+        initAudio();
+        startMusicLoop();
+      }
+    }
+
+    // Language & Greetings Data
+    const messages = {
+      marathi: `अंधारावर प्रकाशाचा विजय साजरा करण्याचा हा दीपोत्सव! 🪔\n\nज्याप्रमाणे छत्रपती शिवाजी महाराजांनी स्वराज्याची ज्योत पेटवली, त्याचप्रमाणे तुमच्या मनात धैर्य, जिद्द आणि प्रेरणेचा दिवा सदैव तेवत राहो.\n\nया दिवाळीत तुमच्या आयुष्यात सुख, समृद्धी आणि यशाचा प्रकाश उजळो!\n\nदिवाळीच्या हार्दिक शुभेच्छा! जय भवानी, जय शिवराय! 🚩`,
+      english: `Happy Diwali! 🪔\n\nJust as Chhatrapati Shivaji Maharaj lit the flame of Swarajya in the darkest of times, may this Diwali ignite courage, vision, and purpose in your heart.\n\nHe showed us that greatness comes from discipline, justice, and the will to build something larger than oneself. May your home glow with happiness and your spirit stay unbreakable!\n\nShubh Deepavali! Jai Bhavani, Jai Shivaji! 🚩`,
+      tamil: `இருளை வென்று ஒளி பிறக்கும் தீபத் திருநாள்! 🪔\n\nசத்ரபதி சிவாஜி மகாராஜ் சுயராஜ்ஜியத்தின் தீபத்தை ஏற்றியது போல, உங்கள் மனதில் துணிவு, உறுதி, உத்வேகம் என்னும் தீபம் எப்போதும் ஒளிரட்டும்.\n\nஇந்தத் தீபாவளி உங்கள் வாழ்வில் மகிழ்ச்சி, செழிப்பு, வெற்றியின் ஒளியைப் பரப்பட்டும்!\n\nதீபாவளி நல்வாழ்த்துக்கள்! ஜெய் பவானி, ஜெய் சிவாஜி! 🚩`,
+      telugu: `చీకటిపై వెలుగు సాధించిన విజయాన్ని జరుపుకునే దీపావళి! 🪔\n\nఛత్రపతి శివాజీ మహారాజ్ స్వరాజ్య జ్యోతిని వెలిగించినట్లే, మీ హృదయంలో ధైర్యం, పట్టుదల, స్ఫూర్తి అనే దీపం ఎల్లప్పుడూ వెలుగుతూ ఉండాలి.\n\nఈ దీపావళి మీ జీవితంలో సుఖం, సంపద, విజయపు కాంతిని నింపాలి!\n\nదీపావళి శుభాకాంక్షలు! జై భవానీ, జై శివాజీ! 🚩`,
+      punjabi: `ਹਨੇਰੇ ਉੱਤੇ ਰੌਸ਼ਨੀ ਦੀ ਜਿੱਤ ਦਾ ਤਿਉਹਾਰ, दीवালী! 🪔\n\nਜਿਵੇਂ ਛਤਰਪਤੀ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਸਵਰਾਜ ਦੀ ਜੋਤ ਜਗਾਈ, ਉਸੇ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਮਨ ਵਿੱਚ ਹਿੰਮਤ, ਦ੍ਰਿੜ੍ਹਤਾ ਅਤੇ ਪ੍ਰੇਰਣਾ ਦਾ ਦੀਵਾ ਸਦਾ ਜਗਦਾ ਰਹੇ।\n\nਇਸ ਦੀਵਾਲੀ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਖੁਸ਼ੀਆਂ, ਖੁਸ਼ਹਾਲੀ ਅਤੇ ਸਫਲਤਾ ਦਾ ਪ੍ਰਕਾਸ਼ ਹੋਵੇ!\n\nਦੀਵਾਲੀ ਦੀਆਂ ਲੱਖ-ਲੱਖ ਵਧਾਈਆਂ! ਜੈ ਭਵਾਨੀ, ਜੈ ਸ਼ਿਵਾਜੀ! 🚩`
     };
 
     let selectedLang = 'marathi';
-    const audio = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    let isPlaying = false;
 
-    function playMusic() {
-      audio.play().then(() => {
-        isPlaying = true;
-        musicBtn.innerHTML = '🎶 Music: ON';
-      }).catch(err => console.log('Audio autoplay blocked'));
-    }
-
-    function toggleMusic() {
-      if (isPlaying) {
-        audio.pause();
-        musicBtn.innerHTML = '🎵 Music: OFF';
-        isPlaying = false;
-      } else {
-        playMusic();
-      }
-    }
-
-    // Step 1: User Chooses Language
     function selectLanguage(langKey) {
       selectedLang = langKey;
-      playMusic(); // Interaction begins music smoothly
-      
-      document.getElementById('currentLangLabel').innerText = messages[langKey].label;
-      document.getElementById('messageText').innerText = messages[langKey].text;
-      
-      // Transition from Gateway to Message Card
+      initAudio();
+      startMusicLoop();
+      playChime(523.25, 1.0);
+
+      document.getElementById('messageText').innerText = messages[langKey];
       document.getElementById('languageGatewayModal').style.display = 'none';
       document.getElementById('messageModal').style.display = 'flex';
-    }
-
-    function reopenLanguagePicker() {
-      document.getElementById('messageModal').style.display = 'none';
-      document.getElementById('languageGatewayModal').style.display = 'flex';
     }
 
     function openMessageModal() {
@@ -552,16 +586,11 @@
 
     function closeMessageModal() {
       document.getElementById('messageModal').style.display = 'none';
-      // Launch celebration fireworks when closing
-      for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-          createFirework(Math.random() * canvas.width, Math.random() * (canvas.height * 0.5));
-        }, i * 200);
-      }
+      launchGrandFinale();
     }
 
     function getShareText() {
-      return `🪔 *Happy Diwali!* 🪔\n\n${messages[selectedLang].text}\n\n— *Wishes from Rushikesha & Family 🚩*\n\nCelebrate and play with interactive fireworks here:\n👉 ${window.location.href}`;
+      return `🪔 *Happy Diwali!* 🪔\n\n${messages[selectedLang]}\n\n— *Wishes from Rushikesha & Family 🚩*\n\nCelebrate and play with interactive firecrackers here:\n👉 ${window.location.href}`;
     }
 
     function shareWhatsApp() {
@@ -579,70 +608,287 @@
       }
     }
 
-    // Canvas Fireworks Simulation
-    const canvas = document.getElementById('fireworksCanvas');
+    // Firecrackers Selection Logic
+    let currentCracker = 'rocket';
+    const instructions = {
+      rocket: '🚀 <strong>Sky Rocket Selected:</strong> Tap anywhere in the sky to launch a whistling rocket!',
+      anar: '🌋 <strong>Anar (Fountain) Selected:</strong> Tap anywhere on the ground to ignite a sparkling fountain!',
+      chakkri: '🌀 <strong>Chakkri Selected:</strong> Tap the ground to spin a whirling wheel of fire!',
+      phuljhadi: '✨ <strong>Phuljhadi Selected:</strong> Drag or tap anywhere to wave bright sparkling fireworks!',
+      ladi: '💥 <strong>1000-Wala Ladi Selected:</strong> Tap to trigger a rapid continuous burst of firecrackers!'
+    };
+
+    function selectCracker(type, el) {
+      currentCracker = type;
+      document.querySelectorAll('.cracker-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('instructionBanner').innerHTML = instructions[type];
+      playChime(440, 0.2);
+    }
+
+    // Canvas Simulation Engine
+    const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    let rockets = [];
+    let chakkris = [];
+    let anars = [];
 
-    function resizeCanvas() {
+    function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resize);
+    resize();
 
-    function createFirework(x, y) {
-      const colors = ['#ff0055', '#ff9900', '#ffd700', '#00ffcc', '#ff00ff', '#ffffff'];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      for (let i = 0; i < 45; i++) {
+    // 1. Rocket System
+    function launchRocket(targetX, targetY) {
+      initAudio();
+      playWhistle();
+      rockets.push({
+        x: targetX,
+        y: canvas.height - 100,
+        targetY: targetY,
+        vy: -11,
+        color: ['#ff0055', '#ffd700', '#00ffcc', '#ff9900', '#ff00ff'][Math.floor(Math.random() * 5)]
+      });
+    }
+
+    function explodeAerial(x, y, color) {
+      playCrackle(120, 0.4);
+      for (let i = 0; i < 60; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 5 + 2;
+        const speed = Math.random() * 6 + 2;
         particles.push({
-          x: x,
-          y: y,
+          x, y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           alpha: 1,
-          color: color,
-          size: Math.random() * 3 + 2
+          color,
+          size: Math.random() * 3 + 2,
+          gravity: 0.05
         });
       }
     }
 
-    canvas.addEventListener('pointerdown', (e) => {
-      createFirework(e.clientX, e.clientY);
-    });
+    // 2. Anar (Flowerpot Fountain)
+    function spawnAnar(x, y) {
+      initAudio();
+      anars.push({ x, y, duration: 90, frame: 0 });
+    }
 
-    function lightDiya(el, event) {
-      event.stopPropagation();
-      el.classList.toggle('lit');
-      const rect = el.getBoundingClientRect();
-      createFirework(rect.left + rect.width / 2, rect.top);
-      
-      const totalLit = document.querySelectorAll('.diya-btn.lit').length;
-      if (totalLit === 5) {
-        setTimeout(() => { openMessageModal(); }, 700);
+    // 3. Chakkri (Ground Spinner)
+    function spawnChakkri(x, y) {
+      initAudio();
+      chakkris.push({ x, y, angle: 0, duration: 110, frame: 0 });
+    }
+
+    // 4. Phuljhadi (Hand Sparkler)
+    function spawnPhuljhadi(x, y) {
+      initAudio();
+      playCrackle(350, 0.15);
+      for (let i = 0; i < 15; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 4 + 1;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: Math.random() > 0.4 ? '#ffd700' : '#ffffff',
+          size: Math.random() * 2.5 + 1.5,
+          gravity: 0.03
+        });
       }
     }
 
-    // Auto fireworks in background
-    setInterval(() => {
-      createFirework(
-        Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1),
-        Math.random() * (canvas.height * 0.5) + (canvas.height * 0.1)
-      );
-    }, 1500);
+    // 5. 1000-Wala Ladi (Chain Burst)
+    function spawnLadi(startX, startY) {
+      initAudio();
+      for (let i = 0; i < 18; i++) {
+        setTimeout(() => {
+          const offsetX = startX + (Math.random() * 60 - 30);
+          const offsetY = startY + (Math.random() * 40 - 20);
+          playCrackle(140 + Math.random() * 100, 0.2);
+          for (let p = 0; p < 20; p++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 4 + 1;
+            particles.push({
+              x: offsetX,
+              y: offsetY,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              alpha: 1,
+              color: Math.random() > 0.5 ? '#ff2222' : '#ffd700',
+              size: Math.random() * 3 + 2,
+              gravity: 0.06
+            });
+          }
+        }, i * 90);
+      }
+    }
 
-    function renderLoop() {
-      ctx.fillStyle = 'rgba(6, 0, 12, 0.25)';
+    // Screen Touch Dispatcher based on Selected Cracker
+    canvas.addEventListener('pointerdown', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (currentCracker === 'rocket') {
+        launchRocket(x, y);
+      } else if (currentCracker === 'anar') {
+        spawnAnar(x, y);
+      } else if (currentCracker === 'chakkri') {
+        spawnChakkri(x, y);
+      } else if (currentCracker === 'phuljhadi') {
+        spawnPhuljhadi(x, y);
+      } else if (currentCracker === 'ladi') {
+        spawnLadi(x, y);
+      }
+    });
+
+    // Support dragging for Phuljhadi
+    canvas.addEventListener('pointermove', (e) => {
+      if (currentCracker === 'phuljhadi' && e.buttons === 1) {
+        spawnPhuljhadi(e.clientX, e.clientY);
+      }
+    });
+
+    // Diyas Function
+    function lightDiya(el, event) {
+      event.stopPropagation();
+      initAudio();
+      el.classList.toggle('lit');
+      const rect = el.getBoundingClientRect();
+      explodeAerial(rect.left + rect.width / 2, rect.top, '#ffd700');
+      playChime(440, 0.5);
+
+      const totalLit = document.querySelectorAll('.diya-btn.lit').length;
+      if (totalLit === 5) {
+        setTimeout(() => { openMessageModal(); }, 600);
+      }
+    }
+
+    function launchGrandFinale() {
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          explodeAerial(
+            Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1),
+            Math.random() * (canvas.height * 0.4) + (canvas.height * 0.1),
+            ['#ff0055', '#ffd700', '#00ffcc', '#ff9900', '#ffffff'][i % 5]
+          );
+        }, i * 220);
+      }
+    }
+
+    // Auto Fireworks Loop
+    setInterval(() => {
+      if (document.getElementById('messageModal').style.display !== 'flex' &&
+          document.getElementById('languageGatewayModal').style.display !== 'flex') {
+        if (Math.random() > 0.5) {
+          launchRocket(Math.random() * (canvas.width * 0.7) + (canvas.width * 0.15), Math.random() * (canvas.height * 0.35) + 60);
+        }
+      }
+    }, 2200);
+
+    // Main Game Render Loop
+    function gameLoop() {
+      ctx.fillStyle = 'rgba(5, 0, 10, 0.28)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // Render Rockets
+      for (let i = rockets.length - 1; i >= 0; i--) {
+        const r = rockets[i];
+        r.y += r.vy;
+
+        // Rocket Trail
+        particles.push({
+          x: r.x + (Math.random() * 4 - 2),
+          y: r.y + 10,
+          vx: Math.random() * 1 - 0.5,
+          vy: Math.random() * 2 + 1,
+          alpha: 0.8,
+          color: '#ff9900',
+          size: 2.5,
+          gravity: 0.02
+        });
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(r.x - 2, r.y, 4, 12);
+
+        if (r.y <= r.targetY) {
+          explodeAerial(r.x, r.y, r.color);
+          rockets.splice(i, 1);
+        }
+      }
+
+      // Render Anars (Flowerpots)
+      for (let i = anars.length - 1; i >= 0; i--) {
+        const a = anars[i];
+        a.frame++;
+        playFountainRush();
+
+        for (let k = 0; k < 6; k++) {
+          const spread = (Math.random() - 0.5) * 3;
+          const upwardSpeed = -(Math.random() * 8 + 4);
+          particles.push({
+            x: a.x + spread * 3,
+            y: a.y,
+            vx: spread,
+            vy: upwardSpeed,
+            alpha: 1,
+            color: Math.random() > 0.3 ? '#ffd700' : '#ff3300',
+            size: Math.random() * 3 + 1.5,
+            gravity: 0.15
+          });
+        }
+
+        if (a.frame >= a.duration) {
+          anars.splice(i, 1);
+        }
+      }
+
+      // Render Chakkris (Spinners)
+      for (let i = chakkris.length - 1; i >= 0; i--) {
+        const c = chakkris[i];
+        c.frame++;
+        c.angle += 0.45;
+        playCrackle(280, 0.08);
+
+        for (let s = 0; s < 3; s++) {
+          const sparkAngle = c.angle + (s * Math.PI * (2 / 3));
+          const speed = Math.random() * 5 + 3;
+          particles.push({
+            x: c.x,
+            y: c.y,
+            vx: Math.cos(sparkAngle) * speed,
+            vy: Math.sin(sparkAngle) * speed,
+            alpha: 1,
+            color: Math.random() > 0.5 ? '#ff9900' : '#00ffff',
+            size: Math.random() * 2.5 + 1.5,
+            gravity: 0.04
+          });
+        }
+
+        ctx.save();
+        ctx.translate(c.x, c.y);
+        ctx.rotate(c.angle);
+        ctx.fillStyle = '#ffd700';
+        ctx.fillRect(-12, -3, 24, 6);
+        ctx.restore();
+
+        if (c.frame >= c.duration) {
+          chakkris.splice(i, 1);
+        }
+      }
+
+      // Render General Sparks & Particles
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.05;
-        p.alpha -= 0.015;
+        p.vy += p.gravity || 0.05;
+        p.alpha -= 0.016;
 
         if (p.alpha <= 0) {
           particles.splice(i, 1);
@@ -658,9 +904,9 @@
         ctx.restore();
       }
 
-      requestAnimationFrame(renderLoop);
+      requestAnimationFrame(gameLoop);
     }
-    renderLoop();
+    gameLoop();
   </script>
 </body>
 </html>
