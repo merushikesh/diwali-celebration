@@ -16,13 +16,13 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: radial-gradient(circle at 50% 30%, #2b0b47 0%, #0c0217 100%);
+      background: radial-gradient(circle at 50% 30%, #380a59 0%, #120224 60%, #06000c 100%);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: #fff;
       position: relative;
     }
 
-    /* Background Canvas */
+    /* Fireworks Canvas */
     #fireworksCanvas {
       position: absolute;
       top: 0;
@@ -33,10 +33,10 @@
       display: block;
     }
 
-    /* Top Navigation HUD */
+    /* Top Bar HUD */
     .top-bar {
       position: absolute;
-      top: 15px;
+      top: 14px;
       left: 0;
       right: 0;
       display: flex;
@@ -44,81 +44,120 @@
       align-items: center;
       padding: 0 16px;
       z-index: 20;
+      gap: 8px;
     }
     .badge-name {
-      background: linear-gradient(135deg, #ff9933, #d32f2f);
+      background: linear-gradient(135deg, #ff7b00, #d32f2f);
       border: 2px solid #ffd700;
       padding: 8px 16px;
       border-radius: 25px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: #fff;
-      box-shadow: 0 4px 15px rgba(255, 153, 51, 0.6);
+      box-shadow: 0 4px 18px rgba(255, 123, 0, 0.6);
       letter-spacing: 0.5px;
     }
-    .btn-wishes {
-      background: #ffd700;
-      color: #1a0026;
-      border: none;
-      padding: 9px 18px;
-      border-radius: 25px;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-      transition: transform 0.1s;
+    .hud-controls {
+      display: flex;
+      gap: 8px;
     }
-    .btn-wishes:active { transform: scale(0.95); }
+    .hud-btn {
+      background: linear-gradient(135deg, #ffd700, #ffb300);
+      color: #210238;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(255, 215, 0, 0.5);
+    }
+    .hud-btn:active { transform: scale(0.95); }
 
-    /* Interactive Bottom Playground */
+    /* Bottom Festive Ground */
     .bottom-ground {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 160px;
-      background: linear-gradient(to top, rgba(15, 2, 25, 0.95), transparent);
+      height: 250px;
+      background: linear-gradient(to top, rgba(10, 1, 20, 0.98) 65%, transparent);
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding-bottom: 25px;
+      padding-bottom: 16px;
       pointer-events: none;
     }
+
     .instruction-text {
       font-size: 13px;
       color: #ffd700;
-      margin-bottom: 15px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-      animation: pulse 1.5s infinite;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+      animation: pulse 1.6s infinite;
+      text-align: center;
+      padding: 0 10px;
+      font-weight: 600;
     }
-    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
+    /* Kids with Traditional Clothing & Sparklers */
+    .kids-stage {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 480px;
+      padding: 0 20px;
+      margin-bottom: 6px;
+      align-items: flex-end;
+    }
+    .kid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: gentleBob 2s infinite ease-in-out alternate;
+    }
+    .kid-container.girl { animation-delay: 0.6s; }
+    @keyframes gentleBob {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+    .sparkler-spark {
+      animation: spark 0.12s infinite alternate;
+      transform-origin: center;
+    }
+    @keyframes spark {
+      0% { opacity: 0.3; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Diyas */
     .diya-row {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       pointer-events: auto;
     }
     .diya-btn {
-      width: 58px;
-      height: 58px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border: 2px solid #ff9933;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 22px;
       position: relative;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .diya-btn.lit {
       border-color: #ffd700;
-      background: radial-gradient(circle, #ffeedd 0%, #ff9933 70%);
-      box-shadow: 0 0 20px #ff9933, 0 0 40px #ffd700;
+      background: radial-gradient(circle, #fff7e6 0%, #ff8c00 70%);
+      box-shadow: 0 0 20px #ff7b00, 0 0 35px #ffd700;
       transform: scale(1.1);
     }
     .diya-flame {
@@ -130,62 +169,141 @@
     .diya-btn.lit .diya-flame { display: block; animation: flicker 0.2s infinite alternate; }
     @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
 
-    /* Modal / Wishes Popup */
+    /* Modals & Overlays */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(8, 1, 16, 0.88);
       z-index: 100;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
     }
-    .modal-card {
-      background: linear-gradient(180deg, #2b0b47 0%, #150220 100%);
+
+    /* Step 1: Language Picker Card */
+    .lang-card {
+      background: linear-gradient(180deg, #420d6b 0%, #1e0333 100%);
+      border: 3px solid #ffd700;
+      border-radius: 24px;
+      padding: 26px 20px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 12px 45px rgba(255, 153, 51, 0.35);
+      animation: popIn 0.3s ease-out;
+    }
+    .lang-card h2 {
+      font-size: 24px;
+      color: #ffd700;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .lang-subtitle {
+      font-size: 14px;
+      color: #ffb74d;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .lang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .lang-btn {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 102, 0, 0.2));
       border: 2px solid #ffd700;
-      border-radius: 20px;
-      padding: 24px 20px;
+      color: #fff;
+      padding: 14px 10px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover, .lang-btn:active {
+      background: linear-gradient(135deg, #ffd700, #ff7b00);
+      color: #210238;
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
+    }
+    .lang-btn span.script {
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .lang-btn span.sub {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    /* Step 2: Full Greeting Message Card */
+    .message-card {
+      background: linear-gradient(180deg, #3d0a63 0%, #19022c 100%);
+      border: 2px solid #ffd700;
+      border-radius: 22px;
+      padding: 24px 18px;
       width: 100%;
       max-width: 440px;
       max-height: 90vh;
       overflow-y: auto;
       text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.9);
+      animation: popIn 0.3s ease-out;
     }
-    .modal-card h2 { color: #ffd700; font-size: 22px; margin-bottom: 6px; }
-    .modal-card .subtitle { color: #ff9933; font-size: 13px; font-weight: bold; margin-bottom: 14px; }
-    
-    select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      background: #12031d;
-      color: #ffd700;
-      border: 1px solid #ffd700;
-      font-size: 15px;
-      margin-bottom: 14px;
-      outline: none;
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
     }
-    .msg-box {
+    .message-card h2 { color: #ffd700; font-size: 22px; margin-bottom: 4px; }
+    .message-card .sub-header { color: #ff9933; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
+
+    .lang-change-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 10px;
-      padding: 14px;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: #ffcc80;
+    }
+    .btn-switch-lang {
+      background: #ffd700;
+      color: #210238;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .msg-display {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 16px;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #fff;
       text-align: left;
       white-space: pre-line;
       margin-bottom: 14px;
-      border-left: 3px solid #ff9933;
+      border-left: 4px solid #ff7b00;
     }
-    .from-tag {
+    .signature-badge {
       color: #ffd700;
       font-weight: 800;
       font-size: 15px;
       margin-bottom: 18px;
     }
+
     .actions-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -212,105 +330,238 @@
       font-size: 14px;
       cursor: pointer;
     }
-    .btn-close {
+    .btn-play {
       width: 100%;
-      background: transparent;
-      border: 1px solid #777;
-      color: #bbb;
-      padding: 9px;
-      border-radius: 8px;
+      background: linear-gradient(135deg, #ffd700, #ff9933);
+      border: none;
+      color: #210238;
+      padding: 11px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 14px;
       cursor: pointer;
-      font-size: 13px;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Controls -->
+  <!-- Festive Traditional Shehnai/Sitar Celebration Music -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_99341416e7.mp3?filename=indian-traditional-festive-melody-122934.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Top Navigation Bar -->
   <div class="top-bar">
     <div class="badge-name">🪔 Rushikesha & Family</div>
-    <button class="btn-wishes" onclick="toggleModal(true)">View Wishes 📜</button>
-  </div>
-
-  <!-- Interactive Canvas -->
-  <canvas id="fireworksCanvas"></canvas>
-
-  <!-- Interactive Bottom Controls (Diyas to tap) -->
-  <div class="bottom-ground">
-    <div class="instruction-text">✨ Tap the Diyas to light them, or tap the sky for Fireworks! ✨</div>
-    <div class="diya-row">
-      <div class="diya-btn" onclick="lightDiya(this, event)">
-        <span class="diya-flame">🔥</span>
-        🪔
-      </div>
-      <div class="diya-btn" onclick="lightDiya(this, event)">
-        <span class="diya-flame">🔥</span>
-        🪔
-      </div>
-      <div class="diya-btn" onclick="lightDiya(this, event)">
-        <span class="diya-flame">🔥</span>
-        🪔
-      </div>
-      <div class="diya-btn" onclick="lightDiya(this, event)">
-        <span class="diya-flame">🔥</span>
-        🪔
-      </div>
-      <div class="diya-btn" onclick="lightDiya(this, event)">
-        <span class="diya-flame">🔥</span>
-        🪔
-      </div>
+    <div class="hud-controls">
+      <button id="musicBtn" class="hud-btn" onclick="toggleMusic()">🎵 Music: ON</button>
+      <button class="hud-btn" onclick="openMessageModal()">Wishes 📜</button>
     </div>
   </div>
 
-  <!-- Greeting Card Modal (Hidden by Default) -->
-  <div id="wishModal" class="modal-overlay">
-    <div class="modal-card">
+  <!-- Interactive Fireworks Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Bottom Interactive Ground -->
+  <div class="bottom-ground">
+    
+    <!-- Animated Kids in Traditional Clothing -->
+    <div class="kids-stage">
+      <!-- Boy: Royal Saffron Kurta & White Dhoti -->
+      <div class="kid-container boy">
+        <svg width="75" height="100" viewBox="0 0 100 130">
+          <g class="sparkler-spark">
+            <circle cx="85" cy="45" r="4" fill="#ffff00" />
+            <line x1="85" y1="45" x2="95" y2="35" stroke="#ff9900" stroke-width="2" />
+            <line x1="85" y1="45" x2="75" y2="35" stroke="#ffffff" stroke-width="2" />
+            <line x1="85" y1="45" x2="85" y2="30" stroke="#ffd700" stroke-width="2" />
+            <line x1="85" y1="45" x2="95" y2="52" stroke="#ff3366" stroke-width="2" />
+          </g>
+          <line x1="68" y1="68" x2="85" y2="45" stroke="#ccc" stroke-width="2" />
+          <circle cx="45" cy="28" r="15" fill="#f5c298" />
+          <path d="M 32 23 Q 45 12 58 23 Q 45 18 32 23 Z" fill="#2c1a0e" />
+          <line x1="45" y1="22" x2="45" y2="28" stroke="#d32f2f" stroke-width="2" />
+          <path d="M 32 43 L 58 43 L 64 78 L 26 78 Z" fill="#ff7700" />
+          <line x1="45" y1="43" x2="45" y2="78" stroke="#ffd700" stroke-width="2" />
+          <path d="M 30 78 L 60 78 L 56 108 L 47 108 L 45 88 L 43 108 L 34 108 Z" fill="#fff8e7" stroke="#ffd700" stroke-width="1.5" />
+          <circle cx="28" cy="55" r="4" fill="#f5c298" />
+          <circle cx="68" cy="68" r="4" fill="#f5c298" />
+        </svg>
+      </div>
+
+      <!-- Girl: Festive Pink Choli & Turquoise Lehanga -->
+      <div class="kid-container girl">
+        <svg width="75" height="100" viewBox="0 0 100 130">
+          <g class="sparkler-spark">
+            <circle cx="15" cy="45" r="4" fill="#ffff00" />
+            <line x1="15" y1="45" x2="5" y2="35" stroke="#ff9900" stroke-width="2" />
+            <line x1="15" y1="45" x2="25" y2="35" stroke="#ffffff" stroke-width="2" />
+            <line x1="15" y1="45" x2="15" y2="30" stroke="#ffd700" stroke-width="2" />
+            <line x1="15" y1="45" x2="5" y2="52" stroke="#00ffcc" stroke-width="2" />
+          </g>
+          <line x1="32" y1="68" x2="15" y2="45" stroke="#ccc" stroke-width="2" />
+          <circle cx="55" cy="28" r="15" fill="#f5c298" />
+          <circle cx="55" cy="18" r="7" fill="#2c1a0e" />
+          <circle cx="55" cy="16" r="8" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="3,3" />
+          <circle cx="55" cy="24" r="1.5" fill="#d32f2f" />
+          <path d="M 43 43 L 67 43 L 65 60 L 45 60 Z" fill="#e91e63" />
+          <path d="M 46 62 L 64 62 L 78 108 L 32 108 Z" fill="#00bcd4" />
+          <path d="M 34 102 Q 55 96 76 102" fill="none" stroke="#ffd700" stroke-width="3" />
+          <circle cx="32" cy="68" r="4" fill="#f5c298" />
+          <circle cx="72" cy="55" r="4" fill="#f5c298" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="instruction-text">✨ Tap the Diyas to light them, or tap the sky for Fireworks! ✨</div>
+    
+    <div class="diya-row">
+      <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
+      <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
+      <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
+      <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
+      <div class="diya-btn" onclick="lightDiya(this, event)"><span class="diya-flame">🔥</span>🪔</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: INITIAL LANGUAGE SELECTION MODAL (Appears First) -->
+  <div id="languageGatewayModal" class="modal-overlay">
+    <div class="lang-card">
+      <h2>🪔 शुभ दीपावली 🪔</h2>
+      <div class="lang-subtitle">
+        I would like to communicate with you!<br>
+        <strong>Please choose your language:</strong>
+      </div>
+
+      <div class="lang-grid">
+        <button class="lang-btn" onclick="selectLanguage('marathi')">
+          <span class="script">मराठी</span>
+          <span class="sub">Marathi</span>
+        </button>
+        <button class="lang-btn" onclick="selectLanguage('english')">
+          <span class="script">English</span>
+          <span class="sub">Universal</span>
+        </button>
+        <button class="lang-btn" onclick="selectLanguage('tamil')">
+          <span class="script">தமிழ்</span>
+          <span class="sub">Tamil</span>
+        </button>
+        <button class="lang-btn" onclick="selectLanguage('telugu')">
+          <span class="script">తెలుగు</span>
+          <span class="sub">Telugu</span>
+        </button>
+      </div>
+      <button class="lang-btn" style="width: 100%;" onclick="selectLanguage('punjabi')">
+        <span class="script">ਪੰਜਾਬੀ</span>
+        <span class="sub">Punjabi</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: PERSONALIZED GREETING MESSAGE MODAL -->
+  <div id="messageModal" class="modal-overlay" style="display: none;">
+    <div class="message-card">
       <h2>Happy Diwali! 🪔</h2>
-      <div class="subtitle">Chhatrapati Shivaji Maharaj Inspired Wishes</div>
+      <div class="sub-header">Chhatrapati Shivaji Maharaj Inspired Wishes</div>
 
-      <label for="langSelect" style="display:block; text-align:left; font-size:12px; margin-bottom:4px; color:#aaa;">Choose Language:</label>
-      <select id="langSelect" onchange="updateMessage()">
-        <option value="marathi">मराठी (Marathi)</option>
-        <option value="english">English</option>
-        <option value="tamil">தமிழ் (Tamil)</option>
-        <option value="telugu">తెలుగు (Telugu)</option>
-        <option value="punjabi">ਪੰਜਾਬੀ (Punjabi)</option>
-      </select>
+      <div class="lang-change-row">
+        <span>Language: <strong id="currentLangLabel">मराठी</strong></span>
+        <button class="btn-switch-lang" onclick="reopenLanguagePicker()">Change 🔁</button>
+      </div>
 
-      <div id="messageText" class="msg-box"></div>
+      <div id="messageText" class="msg-display"></div>
 
-      <div class="from-tag">— Wishes from Rushikesha & Family 🚩</div>
+      <div class="signature-badge">— Wishes from Rushikesha & Family 🚩</div>
 
       <div class="actions-grid">
         <button class="btn-wa" onclick="shareWhatsApp()">Share WhatsApp 📲</button>
         <button class="btn-native" onclick="shareNative()">Share Link 🔗</button>
       </div>
-      <button class="btn-close" onclick="toggleModal(false)">Close & Continue Playing</button>
+      <button class="btn-play" onclick="closeMessageModal()">✨ Light Diyas & Play Fireworks ✨</button>
     </div>
   </div>
 
   <script>
     const messages = {
-      marathi: `अंधारावर प्रकाशाचा विजय साजरा करण्याचा हा दीपोत्सव! 🪔\n\nज्याप्रमाणे छत्रपती शिवाजी महाराजांनी स्वराज्याची ज्योत पेटवली, त्याचप्रमाणे तुमच्या मनात धैर्य, जिद्द आणि प्रेरणेचा दिवा सदैव तेवत राहो.\n\nया दिवाळीत तुमच्या आयुष्यात सुख, समृद्धी आणि यशाचा प्रकाश उजळो!\n\nदिवाळीच्या हार्दिक शुभेच्छा! जय भवानी, जय शिवराय! 🚩`,
-      english: `Happy Diwali! 🪔\n\nJust as Chhatrapati Shivaji Maharaj lit the flame of Swarajya in the darkest of times, may this Diwali ignite courage, vision, and purpose in your heart.\n\nHe showed us that greatness comes from discipline, justice, and the will to build something larger than oneself. May your home glow with happiness and your spirit stay unbreakable!\n\nShubh Deepavali! Jai Bhavani, Jai Shivaji! 🚩`,
-      tamil: `இருளை வென்று ஒளி பிறக்கும் தீபத் திருநாள்! 🪔\n\nசத்ரபதி சிவாஜி மகாராஜ் சுயராஜ்ஜியத்தின் தீபத்தை ஏற்றியது போல, உங்கள் மனதில் துணிவு, உறுதி, உத்வேகம் என்னும் தீபம் எப்போதும் ஒளிரட்டும்.\n\nஇந்தத் தீபாவளி உங்கள் வாழ்வில் மகிழ்ச்சி, செழிப்பு, வெற்றியின் ஒளியைப் பரப்பட்டும்!\n\nதீபாவளி நல்வாழ்த்துக்கள்! ஜெய் பவானி, ஜெய் சிவாஜி! 🚩`,
-      telugu: `చీకటిపై వెలుగు సాధించిన విజయాన్ని జరుపుకునే దీపావళి! 🪔\n\nఛత్రపతి శివాజీ మహారాజ్ స్వరాజ్య జ్యోతిని వెలిగించినట్లే, మీ హృదయంలో ధైర్యం, పట్టుదల, స్ఫూర్తి అనే దీపం ఎల్లప్పుడూ వెలుగుతూ ఉండాలి.\n\nఈ దీపావళి మీ జీవితంలో సుఖం, సంపద, విజయపు కాంతిని నింపాలి!\n\nదీపావళి శుభాకాంక్షలు! జై భవానీ, జై శివాజీ! 🚩`,
-      punjabi: `ਹਨੇਰੇ ਉੱਤੇ ਰੌਸ਼ਨੀ ਦੀ ਜਿੱਤ ਦਾ ਤਿਉਹਾਰ, ਦੀਵਾਲੀ! 🪔\n\nਜਿਵੇਂ ਛਤਰਪਤੀ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਸਵਰਾਜ ਦੀ ਜੋਤ ਜਗਾਈ, ਉਸੇ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਮਨ ਵਿੱਚ ਹਿੰਮਤ, ਦ੍ਰਿੜ੍ਹਤਾ ਅਤੇ ਪ੍ਰੇਰਣਾ ਦਾ ਦੀਵਾ ਸਦਾ ਜਗਦਾ ਰਹੇ।\n\nਇਸ ਦੀਵਾਲੀ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਖੁਸ਼ੀਆਂ, ਖੁਸ਼ਹਾਲੀ ਅਤੇ ਸਫਲਤਾ ਦਾ ਪ੍ਰਕਾਸ਼ ਹੋਵੇ!\n\nਦੀਵਾਲੀ ਦੀਆਂ ਲੱਖ-ਲੱਖ ਵਧਾਈਆਂ! ਜੈ ਭਵਾਨੀ, ਜੈ ਸ਼ਿਵਾਜੀ! 🚩`
+      marathi: {
+        label: "मराठी (Marathi)",
+        text: `अंधारावर प्रकाशाचा विजय साजरा करण्याचा हा दीपोत्सव! 🪔\n\nज्याप्रमाणे छत्रपती शिवाजी महाराजांनी स्वराज्याची ज्योत पेटवली, त्याचप्रमाणे तुमच्या मनात धैर्य, जिद्द आणि प्रेरणेचा दिवा सदैव तेवत राहो.\n\nया दिवाळीत तुमच्या आयुष्यात सुख, समृद्धी आणि यशाचा प्रकाश उजळो!\n\nदिवाळीच्या हार्दिक शुभेच्छा! जय भवानी, जय शिवराय! 🚩`
+      },
+      english: {
+        label: "English",
+        text: `Happy Diwali! 🪔\n\nJust as Chhatrapati Shivaji Maharaj lit the flame of Swarajya in the darkest of times, may this Diwali ignite courage, vision, and purpose in your heart.\n\nHe showed us that greatness comes from discipline, justice, and the will to build something larger than oneself. May your home glow with happiness and your spirit stay unbreakable!\n\nShubh Deepavali! Jai Bhavani, Jai Shivaji! 🚩`
+      },
+      tamil: {
+        label: "தமிழ் (Tamil)",
+        text: `இருளை வென்று ஒளி பிறக்கும் தீபத் திருநாள்! 🪔\n\nசத்ரபதி சிவாஜி மகாராஜ் சுயராஜ்ஜியத்தின் தீபத்தை ஏற்றியது போல, உங்கள் மனதில் துணிவு, உறுதி, உத்வேகம் என்னும் தீபம் எப்போதும் ஒளிரட்டும்.\n\nஇந்தத் தீபாவளி உங்கள் வாழ்வில் மகிழ்ச்சி, செழிப்பு, வெற்றியின் ஒளியைப் பரப்பட்டும்!\n\nதீபாவளி நல்வாழ்த்துக்கள்! ஜெய் பவானி, ஜெய் சிவாஜி! 🚩`
+      },
+      telugu: {
+        label: "తెలుగు (Telugu)",
+        text: `చీకటిపై వెలుగు సాధించిన విజయాన్ని జరుపుకునే దీపావళి! 🪔\n\nఛత్రపతి శివాజీ మహారాజ్ స్వరాజ్య జ్యోతిని వెలిగించినట్లే, మీ హృదయంలో ధైర్యం, పట్టుదల, స్ఫూర్తి అనే దీపం ఎల్లప్పుడూ వెలుగుతూ ఉండాలి.\n\nఈ దీపావళి మీ జీవితంలో సుఖం, సంపద, విజయపు కాంతిని నింపాలి!\n\nదీపావళి శుభాకాంక్షలు! జై భవానీ, జై శివాజీ! 🚩`
+      },
+      punjabi: {
+        label: "ਪੰਜਾਬੀ (Punjabi)",
+        text: `ਹਨੇਰੇ ਉੱਤੇ ਰੌਸ਼ਨੀ ਦੀ ਜਿੱਤ ਦਾ ਤਿਉਹਾਰ, ਦੀਵਾਲੀ! 🪔\n\nਜਿਵੇਂ ਛਤਰਪਤੀ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਸਵਰਾਜ ਦੀ ਜੋਤ ਜਗਾਈ, ਉਸੇ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਮਨ ਵਿੱਚ ਹਿੰਮਤ, ਦ੍ਰਿੜ੍ਹਤਾ ਅਤੇ ਪ੍ਰੇਰਣਾ ਦਾ ਦੀਵਾ ਸਦਾ ਜਗਦਾ ਰਹੇ।\n\nਇਸ ਦੀਵਾਲੀ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਖੁਸ਼ੀਆਂ, ਖੁਸ਼ਹਾਲੀ ਅਤੇ ਸਫਲਤਾ ਦਾ ਪ੍ਰਕਾਸ਼ ਹੋਵੇ!\n\nਦੀਵਾਲੀ ਦੀਆਂ ਲੱਖ-ਲੱਖ ਵਧਾਈਆਂ! ਜੈ ਭਵਾਨੀ, ਜੈ ਸ਼ਿਵਾਜੀ! 🚩`
+      }
     };
 
-    function updateMessage() {
-      const lang = document.getElementById('langSelect').value;
-      document.getElementById('messageText').innerText = messages[lang];
-    }
-    updateMessage();
+    let selectedLang = 'marathi';
+    const audio = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    let isPlaying = false;
 
-    function toggleModal(show) {
-      document.getElementById('wishModal').style.display = show ? 'flex' : 'none';
+    function playMusic() {
+      audio.play().then(() => {
+        isPlaying = true;
+        musicBtn.innerHTML = '🎶 Music: ON';
+      }).catch(err => console.log('Audio autoplay blocked'));
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.innerHTML = '🎵 Music: OFF';
+        isPlaying = false;
+      } else {
+        playMusic();
+      }
+    }
+
+    // Step 1: User Chooses Language
+    function selectLanguage(langKey) {
+      selectedLang = langKey;
+      playMusic(); // Interaction begins music smoothly
+      
+      document.getElementById('currentLangLabel').innerText = messages[langKey].label;
+      document.getElementById('messageText').innerText = messages[langKey].text;
+      
+      // Transition from Gateway to Message Card
+      document.getElementById('languageGatewayModal').style.display = 'none';
+      document.getElementById('messageModal').style.display = 'flex';
+    }
+
+    function reopenLanguagePicker() {
+      document.getElementById('messageModal').style.display = 'none';
+      document.getElementById('languageGatewayModal').style.display = 'flex';
+    }
+
+    function openMessageModal() {
+      document.getElementById('messageModal').style.display = 'flex';
+    }
+
+    function closeMessageModal() {
+      document.getElementById('messageModal').style.display = 'none';
+      // Launch celebration fireworks when closing
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          createFirework(Math.random() * canvas.width, Math.random() * (canvas.height * 0.5));
+        }, i * 200);
+      }
     }
 
     function getShareText() {
-      const lang = document.getElementById('langSelect').value;
-      return `🪔 *Happy Diwali!* 🪔\n\n${messages[lang]}\n\n— *Wishes from Rushikesha & Family 🚩*\n\nCelebrate and play with interactive fireworks here:\n👉 ${window.location.href}`;
+      return `🪔 *Happy Diwali!* 🪔\n\n${messages[selectedLang].text}\n\n— *Wishes from Rushikesha & Family 🚩*\n\nCelebrate and play with interactive fireworks here:\n👉 ${window.location.href}`;
     }
 
     function shareWhatsApp() {
@@ -358,26 +609,23 @@
       }
     }
 
-    // Tap/Click on canvas launches firework
     canvas.addEventListener('pointerdown', (e) => {
       createFirework(e.clientX, e.clientY);
     });
 
-    // Light Diya function
     function lightDiya(el, event) {
       event.stopPropagation();
       el.classList.toggle('lit');
       const rect = el.getBoundingClientRect();
       createFirework(rect.left + rect.width / 2, rect.top);
       
-      // If all are lit, trigger celebration popup
       const totalLit = document.querySelectorAll('.diya-btn.lit').length;
       if (totalLit === 5) {
-        setTimeout(() => { toggleModal(true); }, 700);
+        setTimeout(() => { openMessageModal(); }, 700);
       }
     }
 
-    // Auto fireworks every 1.5 seconds
+    // Auto fireworks in background
     setInterval(() => {
       createFirework(
         Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1),
@@ -386,14 +634,14 @@
     }, 1500);
 
     function renderLoop() {
-      ctx.fillStyle = 'rgba(12, 2, 23, 0.25)';
+      ctx.fillStyle = 'rgba(6, 0, 12, 0.25)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.05; // gravity
+        p.vy += 0.05;
         p.alpha -= 0.015;
 
         if (p.alpha <= 0) {
